@@ -6,7 +6,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,7 +34,6 @@ public class ProductoController {
 
 	}
 
-	@GetMapping(path = "/productos/filtered", produces = "application/json")
 	/**
 	 * Devuelve una lista de productos filtrada mediante el query param
 	 * "categorias", para utilizarlo se agrega en la URL
@@ -45,6 +48,7 @@ public class ProductoController {
 	 *                   "size=n"
 	 * @return json con una lista de objetos tipo producto
 	 */
+	@GetMapping(path = "/productos/filtered", produces = "application/json")
 	public Page<Producto> listadoProductosFiltered(
 			@RequestParam(name = "categorias", required = true) List<String> categorias, Pageable pageable) {
 		;
@@ -56,5 +60,21 @@ public class ProductoController {
 	@GetMapping(path = "/productos/categories", produces = "application/json")
 	public List<String> listadoCategories() {
 		return productoServicio.listaCategory();
+	}
+
+	@PostMapping("/productos/create")
+	public ResponseEntity<String> crearProducto(@RequestBody Producto JsonProducto) {
+		try {
+			if (JsonProducto.getNombre().isBlank()) {
+				return ResponseEntity.ok().body("El nombre no puede ser nulo");
+			} else {
+				productoServicio.crearRegistro(JsonProducto);
+				return ResponseEntity.ok().body("Producto creado con éxito");
+			}
+
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+
 	}
 }

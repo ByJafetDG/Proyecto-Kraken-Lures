@@ -18,7 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class ImageController {
 
 	/**
-	 * Metodo que se utiliza para clasificar el tipo de extension de la imagen que se devolverá en la respuesta del api
+	 * Ruta base luego de la carpeta principal del proyecto
+	 */
+	String basePath = "src/main/resources/static/Imagenes/";
+
+	/**
+	 * Metodo que se utiliza para clasificar el tipo de extension de la imagen que
+	 * se devolverá en la respuesta del api
+	 * 
 	 * @param extension recibe la extensión de la imagen que se desea identificar
 	 * @return tipo de imagen correspondiente
 	 */
@@ -33,40 +40,40 @@ public class ImageController {
 			return MediaType.IMAGE_GIF_VALUE;
 		default:
 			return MediaType.APPLICATION_OCTET_STREAM_VALUE; // Tipo de contenido default
-																
+
 		}
 	}
 
-	/**
-	 * Ruta base luego de la carpeta principal del proyecto
-	 */
-	String basePath = "src/main/resources/static/Imagenes/";
-
 	@GetMapping("/img")
-	public ResponseEntity<Resource> printImage(@RequestParam(name = "imageRootName",required = true) String imageName) {
+	public ResponseEntity<Resource> printImage(
+			@RequestParam(name = "imageRootName", required = true) String imageName) {
 		/**
-		 * Recibe el nombre de la imagen y mediante el metodo de la libreria FilenameUtils obtiene la extensión de esa imagen (tipo de imagen)
+		 * Recibe el nombre de la imagen y mediante el metodo de la libreria
+		 * FilenameUtils obtiene la extensión de esa imagen (tipo de imagen)
 		 */
 		String extension = FilenameUtils.getExtension(imageName);
 
 		try {
 			/**
-			 * Se utiliza el objeto path para crear una ruta en base al basePath y la ruta o nombre de la imagen recibida. El método resolve() agrega
-			 * la ruta de la imagen a la ruta base y crea un objeto Path
+			 * Se utiliza el objeto path para crear una ruta en base al basePath y la ruta o
+			 * nombre de la imagen recibida. El método resolve() agrega la ruta de la imagen
+			 * a la ruta base y crea un objeto Path
 			 */
 			Path imagePath = Paths.get(basePath).resolve(imageName);
 			/**
-			 * Se crea el objeto tipo resource que representa la imagen del servidor.
-			 * El método toUri() convierte el objeto Path en un objeto URI.
-			 * Un URI (Uniform Resource Identifier) es una secuencia de caracteres que identifica un recurso de manera única. 
-			 * En este contexto, se utiliza para crear la URL de la imagen en el servidor.
-			 * La implementación UrlResource se utiliza para crear un objeto tipo UrlResource con la URI de la imagen que se construyó anteriormente.
+			 * Se crea el objeto tipo resource que representa la imagen del servidor. El
+			 * método toUri() convierte el objeto Path en un objeto URI. Un URI (Uniform
+			 * Resource Identifier) es una secuencia de caracteres que identifica un recurso
+			 * de manera única. En este contexto, se utiliza para crear la URL de la imagen
+			 * en el servidor. La implementación UrlResource se utiliza para crear un objeto
+			 * tipo UrlResource con la URI de la imagen que se construyó anteriormente.
 			 */
 			Resource resource = new UrlResource(imagePath.toUri());
 			/**
-			 * Verifica si el resource(ruta de la imagen creada) existe y el servidor puede leerla (a nivel de permsisos)
-			 * Si existe, devuelve una respusta 200 del api con un header que representará el tipo de contenido (tipo de imagen)
-			 * y el body de la respuesta que será la imagen obtenida
+			 * Verifica si el resource(ruta de la imagen creada) existe y el servidor puede
+			 * leerla (a nivel de permsisos) Si existe, devuelve una respusta 200 del api
+			 * con un header que representará el tipo de contenido (tipo de imagen) y el
+			 * body de la respuesta que será la imagen obtenida
 			 */
 			if (resource.exists() && resource.isReadable()) {
 				return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, getContentTypeByExtension(extension))

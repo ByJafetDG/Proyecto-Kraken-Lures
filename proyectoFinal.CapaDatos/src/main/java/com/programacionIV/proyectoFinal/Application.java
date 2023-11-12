@@ -8,7 +8,6 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-//@EntityScan(basePackages = "com.programacionIV.proyectoFinal.entidades")
 public class Application {
 
 	public static void main(String[] args) {

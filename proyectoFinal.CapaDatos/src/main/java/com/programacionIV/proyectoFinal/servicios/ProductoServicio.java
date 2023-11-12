@@ -52,5 +52,9 @@ public class ProductoServicio {
 	public List<String> listaCategory() {
 		return productoRepository.findDistinctCategory();
 	}
+	
+	public void crearRegistro(Producto producto) {
+		productoRepository.save(producto);
+	}
 
 }

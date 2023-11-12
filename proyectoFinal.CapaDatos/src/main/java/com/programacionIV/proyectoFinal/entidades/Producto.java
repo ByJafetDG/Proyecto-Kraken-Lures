@@ -37,7 +37,7 @@ public class Producto {
 	private int vecesComprado;
 	@Column(name = "ES_TENDENCIA")
 	private boolean esTendencia;
-	@Column(name= "DESCRIPCION")
+	@Column(name = "DESCRIPCION")
 	private String descripcion;
 
 	public Producto() {
@@ -139,10 +139,5 @@ public class Producto {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
-	
-
-	
-
 
 }
