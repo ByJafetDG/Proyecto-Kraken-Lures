@@ -1,0 +1,23 @@
+.containerTable {
+    max-width: 500px;
+    text-align: left;
+}
+
+.containerCategories {
+    max-width: 500px;
+    text-align: center;
+}
+
+.containerBtnPage{
+    max-width: 500px;
+    text-align: center; 
+}
+
+#tableTitle{
+    text-align: center;
+}
+
+.containerAll{
+    max-width: 500px;
+    margin: auto;
+}
