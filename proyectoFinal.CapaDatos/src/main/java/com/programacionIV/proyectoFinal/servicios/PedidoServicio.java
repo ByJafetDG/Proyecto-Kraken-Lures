@@ -23,6 +23,12 @@ public class PedidoServicio {
 		return pedido;
 	}
 	
+	public Page<Pedido> listaPedidosFilteredId(List<Integer> pedidoId, Pageable pageable) {
+		
+		return pedidoRepository.findByPedidoIdIn(pedidoId, pageable);
+		
+	}
+	
 	public Page<Pedido> listaPedidosFiltered(List<Integer> clienteId, Pageable pageable) {
 		
 		return pedidoRepository.findByClienteIdIn(clienteId, pageable);

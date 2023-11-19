@@ -30,6 +30,14 @@ public class PedidoController {
 		return consultarPedidos;
 	}
 	
+	@GetMapping(path = "/pedidos/filteredById", produces = "application/json")
+	public Page<Pedido> listadoPedidosFilteredId(@RequestParam(name = "pedidoId", required = true) List<Integer> pedidoId, Pageable pageable){;
+				
+		Page<Pedido> consultaPedidosId = pedidoServicio.listaPedidosFilteredId(pedidoId,pageable);
+		
+		return consultaPedidosId;
+	}
+	
 	@GetMapping(path = "/pedidos/filtered", produces = "application/json")
 	public Page<Pedido> listadoPedidosFiltered(@RequestParam(name = "clienteId", required = true) List<Integer> clienteId, Pageable pageable){;
 				
