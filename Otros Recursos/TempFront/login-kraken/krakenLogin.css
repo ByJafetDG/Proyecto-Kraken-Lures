@@ -4,7 +4,7 @@
 }
 
 body{
-    background: url(../imagenes_de_la_web/Green\ and\ Yellow\ Simple\ Clean\ Shoes\ Banner.png);
+    background: url("../imagenes_de_la_web/imagenes_de_la_web/Green\ and\ Yellow\ Simple\ Clean\ Shoes\ Banner.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

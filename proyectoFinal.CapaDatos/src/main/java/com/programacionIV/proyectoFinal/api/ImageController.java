@@ -25,7 +25,7 @@ public class ImageController {
 	/**
 	 * Metodo que se utiliza para clasificar el tipo de extension de la imagen que
 	 * se devolverá en la respuesta del api
-	 * 
+	 *
 	 * @param extension recibe la extensión de la imagen que se desea identificar
 	 * @return tipo de imagen correspondiente
 	 */

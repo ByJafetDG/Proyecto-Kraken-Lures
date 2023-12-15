@@ -31,9 +31,9 @@ public class PedidoLinea {
     private float impuesto;
     @Column(name = "TOTAL")
     private float total;
-    
+
     public PedidoLinea() {
-    	
+
     }
 
 	/**
@@ -133,5 +133,5 @@ public class PedidoLinea {
 	public void setTotal(float total) {
 		this.total = total;
 	}
-	
+
 }

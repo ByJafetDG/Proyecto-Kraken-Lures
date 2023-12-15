@@ -13,5 +13,5 @@ import com.programacionIV.proyectoFinal.entidades.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
 	Page<Usuario> findByUsuarioIdIn(List<Integer> usuarioId, Pageable pageable);
-	
+
 }

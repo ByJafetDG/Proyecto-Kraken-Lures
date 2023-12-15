@@ -19,24 +19,31 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PEDIDO_ID")
 	private int pedidoId;
+
 	@ManyToOne
 	@JoinColumn(name = "CLIENTE_ID")
 	private Cliente clienteId;
+
 	@Column(name = "FECHA")
 	private LocalDate fecha;
+
 	@Column(name = "ESTADO")
 	private String estado; /* R=RECIBIDO, A=APROBADO, C=COMPLETADO */
+
 	@Column(name = "ENVIADO")
 	private boolean enviado;
+
 	@Column(name = "SUBTOTAL")
 	private float subtotal;
+
 	@Column(name = "IMPUESTO")
 	private float impuesto;
+
 	@Column(name = "TOTAL")
 	private float total;
-	
+
 	public Pedido() {
-		
+
 	}
 
 	/**

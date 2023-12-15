@@ -13,11 +13,11 @@ import com.programacionIV.proyectoFinal.entidades.Pedido;
 
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Integer>{
-	
+
 	Page<Pedido> findByPedidoIdIn(List<Integer> pedidoId, Pageable pageable);
-	
+
 	Page<Pedido> findByClienteIdIn(List<Integer> clienteId, Pageable pageable);
 	/*
-	Page<Pedido> findByFecha(Date fecha, Pageable pageable);
+	Page<Pedido> findByFecha(LocalDate fecha, Pageable pageable);
 	*/
 }

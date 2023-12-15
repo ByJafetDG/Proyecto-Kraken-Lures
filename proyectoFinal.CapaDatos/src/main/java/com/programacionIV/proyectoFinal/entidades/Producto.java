@@ -14,29 +14,40 @@ import jakarta.persistence.Table;
 public class Producto {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "PRODUCTO_ID")
-	private int productoId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "PRODUCTO_ID")
+    private int productoId;
+
 	@Column(name = "NOMBRE")
 	private String nombre;
+
 	@Column(name = "CATEGORIA")
 	private String categoria;
+
 	@Column(name = "SKU")
 	private String sku;
+
 	@Column(name = "IMAGEN")
 	private String imagen;
+
 	@Column(name = "PRECIO")
 	private float precio;
+
 	@Column(name = "CANTIDAD_EN_STOCK")
 	private int cantidad;
+
 	@Column(name = "IMPUESTO")
 	private float impuesto;
+
 	@Column(name = "FECHA_INCLUSION")
 	private LocalDate fechaInclusion;
+
 	@Column(name = "VECES_COMPRADO")
 	private int vecesComprado;
+
 	@Column(name = "ES_TENDENCIA")
 	private boolean esTendencia;
+
 	@Column(name = "DESCRIPCION")
 	private String descripcion;
 

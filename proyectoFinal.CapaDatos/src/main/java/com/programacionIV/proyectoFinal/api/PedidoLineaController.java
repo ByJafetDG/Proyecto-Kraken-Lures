@@ -24,14 +24,14 @@ public class PedidoLineaController {
 
     @GetMapping(path = "/pedidosLinea", produces = "application/json")
     public Page<PedidoLinea> listadoPedidosLinea(@PageableDefault(sort = "linea", direction = Sort.Direction.DESC) Pageable pageable) {
-        Page<PedidoLinea> consultarPedidosLinea = pedidoLineaServicio.listaPedidosLinea(pageable);
+        Page<PedidoLinea> consultarPedidosLinea = pedidoLineaServicio.obtenerLineasDePedidoPaginadas(pageable);
         return consultarPedidosLinea;
     }
 
     @GetMapping(path = "/pedidosLinea/filteredById", produces = "application/json")
-    public Page<PedidoLinea> listadoPedidosLineaFilteredId(@RequestParam(name = "linea", required = true) List<Integer> linea, 
+    public Page<PedidoLinea> listadoPedidosLineaFilteredId(@RequestParam(name = "linea", required = true) List<Integer> linea,
                                                            @PageableDefault(sort = "linea", direction = Sort.Direction.DESC) Pageable pageable) {
-        Page<PedidoLinea> consultaPedidosLineaId = pedidoLineaServicio.listaPedidosLineaFilteredId(linea, pageable);
+        Page<PedidoLinea> consultaPedidosLineaId = pedidoLineaServicio.obtenerLineasDePedidoFiltradasPorId(linea, pageable);
         return consultaPedidosLineaId;
     }
 }

@@ -15,35 +15,35 @@ import com.programacionIV.proyectoFinal.servicios.PedidoServicio;
 
 @RestController
 public class PedidoController {
-	
+
 	private final PedidoServicio pedidoServicio;
-	
+
 	public PedidoController(PedidoServicio pedidoServicio) {
 		this.pedidoServicio = pedidoServicio;
 	}
-	
+
 	@GetMapping(path = "/pedidos", produces = "application/json")
 	public Page<Pedido> listadoPedidos(@PageableDefault(sort = "pedidoId", direction = Sort.Direction.DESC)Pageable pageable){
-		
-		Page<Pedido> consultarPedidos = pedidoServicio.listaPedidos(pageable);
-		
+
+		Page<Pedido> consultarPedidos = pedidoServicio.obtenerPedidosPaginados(pageable);
+
 		return consultarPedidos;
 	}
-	
+
 	@GetMapping(path = "/pedidos/filteredById", produces = "application/json")
-	public Page<Pedido> listadoPedidosFilteredId(@RequestParam(name = "pedidoId", required = true) List<Integer> pedidoId, Pageable pageable){;
-				
-		Page<Pedido> consultaPedidosId = pedidoServicio.listaPedidosFilteredId(pedidoId,pageable);
-		
+	public Page<Pedido> listadoPedidosFilteredId(@RequestParam(name = "pedidoId", required = true) List<Integer> pedidoId, Pageable pageable){
+
+		Page<Pedido> consultaPedidosId = pedidoServicio.obtenerPedidosFiltradosPorId(pedidoId,pageable);
+
 		return consultaPedidosId;
 	}
-	
+
 	@GetMapping(path = "/pedidos/filtered", produces = "application/json")
-	public Page<Pedido> listadoPedidosFiltered(@RequestParam(name = "clienteId", required = true) List<Integer> clienteId, Pageable pageable){;
-				
-		Page<Pedido> consultaPedidos = pedidoServicio.listaPedidosFiltered(clienteId,pageable);
-		
+	public Page<Pedido> listadoPedidosFiltered(@RequestParam(name = "clienteId", required = true) List<Integer> clienteId, Pageable pageable){
+
+		Page<Pedido> consultaPedidos = pedidoServicio.obtenerPedidosFiltradosPorCliente(clienteId,pageable);
+
 		return consultaPedidos;
 	}
-	
+
 }

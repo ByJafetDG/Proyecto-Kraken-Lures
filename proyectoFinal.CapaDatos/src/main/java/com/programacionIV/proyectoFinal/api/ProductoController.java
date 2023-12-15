@@ -30,7 +30,7 @@ public class ProductoController {
 	public Page<Producto> listadoProductos(
 			@PageableDefault(sort = "fechaInclusion", direction = Sort.Direction.DESC) Pageable pageable) {
 
-		return productoServicio.listaProductos(pageable);
+		return productoServicio.obtenerProductosPaginados(pageable);
 
 	}
 
@@ -38,7 +38,7 @@ public class ProductoController {
 	 * Devuelve una lista de productos filtrada mediante el query param
 	 * "categorias", para utilizarlo se agrega en la URL
 	 * "categorias=categoria1,categoria2"
-	 * 
+	 *
 	 * @param categorias es la lista que se recibe del query params con las
 	 *                   categorias que el api filtrará a la hora de devolver la
 	 *                   lista
@@ -51,15 +51,15 @@ public class ProductoController {
 	@GetMapping(path = "/productos/filtered", produces = "application/json")
 	public Page<Producto> listadoProductosFiltered(
 			@RequestParam(name = "categorias", required = true) List<String> categorias, Pageable pageable) {
-		;
 
-		return productoServicio.listaProductoFiltered(categorias, pageable);
+
+		return productoServicio.obtenerProductosFiltradosPorCategoria(categorias, pageable);
 
 	}
 
 	@GetMapping(path = "/productos/categories", produces = "application/json")
 	public List<String> listadoCategories() {
-		return productoServicio.listaCategory();
+		return productoServicio.obtenerCategoriasConStock();
 	}
 
 	@PostMapping("/productos/create")
@@ -68,7 +68,7 @@ public class ProductoController {
 			if (JsonProducto.getNombre().isBlank()) {
 				return ResponseEntity.ok().body("El nombre no puede ser nulo");
 			} else {
-				productoServicio.crearRegistro(JsonProducto);
+				productoServicio.crearProducto(JsonProducto);
 				return ResponseEntity.ok().body("Producto creado con éxito");
 			}
 

@@ -19,41 +19,41 @@ public class ProductoServicio {
 	}
 
 	/**
-	 * Retorna una lista completa de todos los productos existentes en la base de datos
-	 * @param pageable se utiliza para paginar los json 
-	 * @return List<Producto> en formato page
+	 * Obtiene una página de productos paginados.
+	 *
+	 * @param pageable información de paginación
+	 * @return página de productos
 	 */
-	public Page<Producto> listaProductos(Pageable pageable) {
-		Page<Producto> productos = productoRepository.findAll(pageable);
-		return productos;
-
+	public Page<Producto> obtenerProductosPaginados(Pageable pageable) {
+		return productoRepository.findAll(pageable);
 	}
 
 	/**
-	 * Devuelve una lista de productos filtrada por una lista de categorias brindada
-	 * 
-	 * @param categoria es la lista que se recibe con las categorias que se
-	 *                  filtrarán a la hora de devolver la lista
-	 * @param pageable  objeto pageable que se utiliza para la paginación
-	 * @return lista de objetos tipo producto
+	 * Obtiene una página de productos filtrados por categoría.
+	 *
+	 * @param categorias lista de categorías para filtrar
+	 * @param pageable   información de paginación
+	 * @return página de productos filtrados por categoría
 	 */
-	public Page<Producto> listaProductoFiltered(List<String> categoria, Pageable pageable) {
-
-		return productoRepository.findByCategoriaIn(categoria, pageable);
-
+	public Page<Producto> obtenerProductosFiltradosPorCategoria(List<String> categorias, Pageable pageable) {
+		return productoRepository.findByCategoriaIn(categorias, pageable);
 	}
 
 	/**
-	 * Devuelve una lista de string con las categorias de los productos que tengan
-	 * cantidad mayor a 0, utilizando un query personalizado hacia la base de datos
-	 * 
-	 * @return List<String> de categorias
+	 * Obtiene una lista de categorías de productos que tienen una cantidad mayor a 0.
+	 *
+	 * @return lista de categorías
 	 */
-	public List<String> listaCategory() {
+	public List<String> obtenerCategoriasConStock() {
 		return productoRepository.findDistinctCategory();
 	}
-	
-	public void crearRegistro(Producto producto) {
+
+	/**
+	 * Crea un nuevo registro de producto.
+	 *
+	 * @param producto el producto a ser creado
+	 */
+	public void crearProducto(Producto producto) {
 		productoRepository.save(producto);
 	}
 
