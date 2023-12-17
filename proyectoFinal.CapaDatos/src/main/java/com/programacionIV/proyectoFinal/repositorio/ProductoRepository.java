@@ -31,5 +31,10 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer> {
 	 */
 	@Query("SELECT distinct(p.categoria) FROM Producto p where p.cantidad >0")
 	List<String> findDistinctCategory();
+	
+	@Query("SELECT p FROM Producto p where p.esTendencia")
+	Page<Producto> findProductosTendencia(Pageable pageable);
+	
+	
 
 }

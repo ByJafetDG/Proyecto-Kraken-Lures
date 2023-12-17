@@ -28,7 +28,7 @@ public class ProductoController {
 
 	@GetMapping(path = "/productos", produces = "application/json")
 	public Page<Producto> listadoProductos(
-			@PageableDefault(sort = "fechaInclusion", direction = Sort.Direction.DESC) Pageable pageable) {
+			@PageableDefault(sort = "fechaInclusion", direction = Sort.Direction.DESC, size = 12) Pageable pageable) {
 
 		return productoServicio.obtenerProductosPaginados(pageable);
 
@@ -60,6 +60,11 @@ public class ProductoController {
 	@GetMapping(path = "/productos/categories", produces = "application/json")
 	public List<String> listadoCategories() {
 		return productoServicio.obtenerCategoriasConStock();
+	}
+	
+	@GetMapping(path = "/productos/tendencia", produces = "application/json")
+	public Page<Producto> listadoProductosTendencia(Pageable pageable) {
+		return productoServicio.obtenerProductosTendendia(pageable);
 	}
 
 	@PostMapping("/productos/create")

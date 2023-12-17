@@ -47,6 +47,10 @@ public class ProductoServicio {
 	public List<String> obtenerCategoriasConStock() {
 		return productoRepository.findDistinctCategory();
 	}
+	
+	public Page<Producto> obtenerProductosTendendia(Pageable pageable){
+		return productoRepository.findProductosTendencia(pageable);
+	}
 
 	/**
 	 * Crea un nuevo registro de producto.
