@@ -2,6 +2,7 @@ package com.programacionIV.proyectoFinal.servicios;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import com.programacionIV.proyectoFinal.repositorio.ClienteRepository;
 import jakarta.transaction.Transactional;
 
 @Service
+
 public class ClienteServicio {
 
 	private final ClienteRepository clienteRepository;
@@ -84,6 +86,10 @@ public class ClienteServicio {
             return clienteRepository.save(clienteExistente);
         }
         return null; // Manejar caso donde el cliente no existe
+    }
+
+    public Cliente obtenerClientePorId(int idCliente) {
+    	return clienteRepository.findByClienteId(idCliente);
     }
 
 }

@@ -69,5 +69,6 @@ public class ClienteController {
         Cliente clienteActualizado = clienteServicio.actualizarCliente(identificacion, cliente);
         return ResponseEntity.ok().body(clienteActualizado);
     }
+    
 
 }

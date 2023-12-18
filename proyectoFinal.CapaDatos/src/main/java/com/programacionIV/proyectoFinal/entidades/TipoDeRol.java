@@ -1,5 +1,5 @@
 package com.programacionIV.proyectoFinal.entidades;
 
-public enum TipoDeUsuario {
+public enum TipoDeRol {
 	ADMINISTRADOR,CLIENTE
 }
