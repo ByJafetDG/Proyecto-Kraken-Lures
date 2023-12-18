@@ -28,7 +28,7 @@ public class Pedido {
 	private LocalDate fecha;
 
 	@Column(name = "ESTADO")
-	private String estado; /* R=RECIBIDO, A=APROBADO, C=COMPLETADO */
+	private boolean estado; 
 
 	@Column(name = "ENVIADO")
 	private boolean enviado;
@@ -91,14 +91,14 @@ public class Pedido {
 	/**
 	 * @return the estado
 	 */
-	public String getEstado() {
+	public boolean getEstado() {
 		return estado;
 	}
 
 	/**
 	 * @param estado the estado to set
 	 */
-	public void setEstado(String estado) {
+	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
 
