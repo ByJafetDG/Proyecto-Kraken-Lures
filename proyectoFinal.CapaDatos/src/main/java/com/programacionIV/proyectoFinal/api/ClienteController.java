@@ -56,7 +56,7 @@ public class ClienteController {
     }
 
     @GetMapping("/clientes/{identificacion}")
-    public ResponseEntity<Cliente> obtenerClientePorIdentificacion(@PathVariable Integer identificacion) {
+    public ResponseEntity<Cliente> obtenerClientePorIdentificacion(@PathVariable String identificacion) {
         Cliente cliente = clienteServicio.obtenerClientePorIdentificacion(identificacion);
         return ResponseEntity.ok().body(cliente);
     }

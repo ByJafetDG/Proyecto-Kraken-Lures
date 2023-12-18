@@ -15,4 +15,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer>{
 	Page<Cliente> findByTipoIdentificacionIn(List<Integer> tipoIdentificacion, Pageable pageable);
 	Cliente findByClienteId(int idCliente);
 
+	Cliente findByIdentificacion(String identificacion);
+
 }

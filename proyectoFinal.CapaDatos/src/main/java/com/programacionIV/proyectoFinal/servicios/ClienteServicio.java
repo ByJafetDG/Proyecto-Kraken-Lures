@@ -61,9 +61,9 @@ public class ClienteServicio {
      * @param identificacion identificación del cliente
      * @return cliente encontrado
      */
-    public Cliente obtenerClientePorIdentificacion(Integer identificacion) {
+    public Cliente obtenerClientePorIdentificacion(String identificacion) {
         // Lógica para obtener cliente por identificación
-        return clienteRepository.findById(identificacion).orElse(null);
+        return clienteRepository.findByIdentificacion(identificacion);
     }
 
     /**
